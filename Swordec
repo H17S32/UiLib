@@ -54,7 +54,7 @@ do
 end
 --Properties:
 
-_0.Name = "Pendulum\32Hub"
+_0.Name = "Pendulum\32Hub" --// \32 is a space but I left it.
 _0.Parent = game.CoreGui
 _0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 UI_Lib.ScreenGui = _0
@@ -635,19 +635,17 @@ local function QUOQZN_fake_script() -- Main.MainScript
 				v.MouseButton1Click:Connect(function()
 					if v:FindFirstChildOfClass("ImageLabel") then
 						if script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name) then
-							if PageOn ~= script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name) then
-								UI_Lib:ResetFrames()
-								local TheFrame = script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name)
-								TheFrame.Visible = true
-								if TheFrame:FindFirstChildOfClass("ScrollingFrame") then
-									TheFrame:FindFirstChildOfClass("ScrollingFrame").CanvasPosition = Vector2.new(0,0)
-								end
-								TheFrame.Position = TheFrame.Position +UDim2.new(0,0,.13,0)
-								TheFrame:TweenPosition(TheFrame.Position -UDim2.new(0,0,.13,0),"Out","Quart",.4)
-								UI_Lib:FrameOpeningAnimation(TheFrame)
-								PageOn = TheFrame
-								
+							UI_Lib:ResetFrames()
+							local TheFrame = script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name)
+							TheFrame.Visible = true
+							if TheFrame:FindFirstChildOfClass("ScrollingFrame") then
+								TheFrame:FindFirstChildOfClass("ScrollingFrame").CanvasPosition = Vector2.new(0,0)
 							end
+							TheFrame.Position = TheFrame.Position +UDim2.new(0,0,.13,0)
+							TheFrame:TweenPosition(TheFrame.Position -UDim2.new(0,0,.13,0),"Out","Quart",.4)
+							UI_Lib:FrameOpeningAnimation(TheFrame)
+
+
 							
 						end
 					end
@@ -742,7 +740,7 @@ coroutine.wrap(function()
 		end
 	end
 end)()
-spawn(function()
+task.spawn(function()
 	local tweenInfo = TweenInfo.new(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
 	local BlackListedFromTweening = {FrameHome,ScriptingFrame,SettingsFrame,CloseUI}
