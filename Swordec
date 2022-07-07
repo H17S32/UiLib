@@ -54,7 +54,7 @@ do
 end
 --Properties:
 
-_0.Name = "Pendulum\32Hub" --// \32 is a space but I left it.
+_0.Name = "Pendulum\32Hub" --// \32 is a space but I left it
 _0.Parent = game.CoreGui
 _0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 UI_Lib.ScreenGui = _0
@@ -554,47 +554,49 @@ function UI_Lib:CreateText(Text)
 	end
 end
 function UI_Lib:FrameOpeningAnimation(Frame)--//Lazy code
-	for _,v in pairs(Frame:GetDescendants()) do
-		if v then
+	if PageOn ~= Frame then
+		for _,v in pairs(Frame:GetDescendants()) do
+			if v then
 
-			if not v:IsA("ScrollingFrame") then
-				if v:IsA("TextButton") then
-					if v.Name ~= "QuestionMark" then
+				if not v:IsA("ScrollingFrame") then
+					if v:IsA("TextButton") then
+						if v.Name ~= "QuestionMark" then
+							v.Position = v.Position +UDim2.new(0,0,0.1,0)
+							v.BackgroundTransparency =1
+							v.TextTransparency = 1
+
+						end
+					end
+					if v:IsA("TextLabel") then
 						v.Position = v.Position +UDim2.new(0,0,0.1,0)
-						v.BackgroundTransparency =1
 						v.TextTransparency = 1
 
 					end
 				end
-				if v:IsA("TextLabel") then
-					v.Position = v.Position +UDim2.new(0,0,0.1,0)
-					v.TextTransparency = 1
-
-				end
 			end
 		end
-	end
-	--wait(1/7)--cool math
-	for _,v in pairs(Frame:GetDescendants()) do
-		if v then
+		--wait(1/7)--cool math
+		for _,v in pairs(Frame:GetDescendants()) do
+			if v then
 
-			if v:IsA("TextButton") and v.Name ~= "QuestionMark" then
-				v.Visible = true
-				v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
-				if v:FindFirstChild("QuestionMark") then
-					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+				if v:IsA("TextButton") and v.Name ~= "QuestionMark" then
+					v.Visible = true
+					v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
+					if v:FindFirstChild("QuestionMark") then
+						game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+					end
+					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+					wait()
 				end
-				game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-				wait()
-			end
-			if v:IsA("TextLabel") then
-				v.Visible = true
-				wait()
-				v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
-				game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-			end
+				if v:IsA("TextLabel") then
+					v.Visible = true
+					wait()
+					v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
+					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+				end
+			
 
-
+			end
 		end
 	end
 end
@@ -633,18 +635,19 @@ local function QUOQZN_fake_script() -- Main.MainScript
 				v.MouseButton1Click:Connect(function()
 					if v:FindFirstChildOfClass("ImageLabel") then
 						if script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name) then
-							UI_Lib:ResetFrames()
-							local TheFrame = script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name)
-							TheFrame.Visible = true
-							
-							if TheFrame:FindFirstChildOfClass("ScrollingFrame") then
-								TheFrame:FindFirstChildOfClass("ScrollingFrame").CanvasPosition = Vector2.new(0,0)
+							if PageOn ~= script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name) then
+								UI_Lib:ResetFrames()
+								local TheFrame = script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name)
+								TheFrame.Visible = true
+								if TheFrame:FindFirstChildOfClass("ScrollingFrame") then
+									TheFrame:FindFirstChildOfClass("ScrollingFrame").CanvasPosition = Vector2.new(0,0)
+								end
+								TheFrame.Position = TheFrame.Position +UDim2.new(0,0,.13,0)
+								TheFrame:TweenPosition(TheFrame.Position -UDim2.new(0,0,.13,0),"Out","Quart",.4)
+								UI_Lib:FrameOpeningAnimation(TheFrame)
+								PageOn = TheFrame
+								
 							end
-							TheFrame.Position = TheFrame.Position +UDim2.new(0,0,.13,0)
-							TheFrame:TweenPosition(TheFrame.Position -UDim2.new(0,0,.13,0),"Out","Quart",.4)
-							UI_Lib:FrameOpeningAnimation(TheFrame)
-							
-
 							
 						end
 					end
