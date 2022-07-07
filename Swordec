@@ -54,7 +54,7 @@ do
 end
 --Properties:
 
-_0.Name = "Pendulum\32Hub" --// \32 is a space but I left it
+_0.Name = "Pendulum\32Hub"
 _0.Parent = game.CoreGui
 _0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 UI_Lib.ScreenGui = _0
@@ -747,13 +747,13 @@ task.spawn(function()
 
 	local BlackListedFromTweening = {FrameHome,ScriptingFrame,SettingsFrame,CloseUI}
 	repeat wait() until ScriptsScroll:FindFirstChild("BUTTONTEMP")
-
+	
 	wait(.7)
 	for i,v in pairs(ScriptsScroll:GetChildren()) do
 		if v then
 			if v:IsA("TextButton") then
 				--69, 140, 134
-
+				
 
 				v.MouseEnter:Connect(function()
 					--if not table.find(BlackListedFromTweening,v) then
