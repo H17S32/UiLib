@@ -594,7 +594,7 @@ function UI_Lib:FrameOpeningAnimation(Frame)--//Lazy code
 					v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
 					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
 				end
-			
+
 
 			end
 		end
@@ -645,10 +645,10 @@ local function QUOQZN_fake_script() -- Main.MainScript
 								TheFrame.Position = TheFrame.Position +UDim2.new(0,0,.13,0)
 								TheFrame:TweenPosition(TheFrame.Position -UDim2.new(0,0,.13,0),"Out","Quart",.4)
 								UI_Lib:FrameOpeningAnimation(TheFrame)
-								
-								
+								PageOn = TheFrame
+
 							end
-							
+
 						end
 					end
 				end)
@@ -665,7 +665,7 @@ local function QUOQZN_fake_script() -- Main.MainScript
 		end
 	end
 
-	
+
 
 
 end
@@ -747,13 +747,13 @@ task.spawn(function()
 
 	local BlackListedFromTweening = {FrameHome,ScriptingFrame,SettingsFrame,CloseUI}
 	repeat wait() until ScriptsScroll:FindFirstChild("BUTTONTEMP")
-	
+
 	wait(.7)
 	for i,v in pairs(ScriptsScroll:GetChildren()) do
 		if v then
 			if v:IsA("TextButton") then
 				--69, 140, 134
-				
+
 
 				v.MouseEnter:Connect(function()
 					--if not table.find(BlackListedFromTweening,v) then
