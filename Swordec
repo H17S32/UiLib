@@ -771,5 +771,5 @@ coroutine.wrap(function()
 			end
 		end
 	end
-end)  
+end)()
 return UI_Lib
