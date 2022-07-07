@@ -743,6 +743,7 @@ coroutine.wrap(function()
 	end
 end)()
 coroutine.wrap(function()
+	print("done1")
 	local tweenInfo = TweenInfo.new(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
 	local BlackListedFromTweening = {FrameHome,ScriptingFrame,SettingsFrame,CloseUI}
