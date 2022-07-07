@@ -53,7 +53,7 @@ do
 end
 --Properties:
 
-_0.Name = "0"
+_0.Name = "Pendulum\32Hub"
 _0.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 _0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
