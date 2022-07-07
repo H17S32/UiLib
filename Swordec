@@ -554,49 +554,47 @@ function UI_Lib:CreateText(Text)
 	end
 end
 function UI_Lib:FrameOpeningAnimation(Frame)--//Lazy code
-	if PageOn ~= Frame then
-		for _,v in pairs(Frame:GetDescendants()) do
-			if v then
+	for _,v in pairs(Frame:GetDescendants()) do
+		if v then
 
-				if not v:IsA("ScrollingFrame") then
-					if v:IsA("TextButton") then
-						if v.Name ~= "QuestionMark" then
-							v.Position = v.Position +UDim2.new(0,0,0.1,0)
-							v.BackgroundTransparency =1
-							v.TextTransparency = 1
-
-						end
-					end
-					if v:IsA("TextLabel") then
+			if not v:IsA("ScrollingFrame") then
+				if v:IsA("TextButton") then
+					if v.Name ~= "QuestionMark" then
 						v.Position = v.Position +UDim2.new(0,0,0.1,0)
+						v.BackgroundTransparency =1
 						v.TextTransparency = 1
 
 					end
 				end
+				if v:IsA("TextLabel") then
+					v.Position = v.Position +UDim2.new(0,0,0.1,0)
+					v.TextTransparency = 1
+
+				end
 			end
 		end
-		--wait(1/7)--cool math
-		for _,v in pairs(Frame:GetDescendants()) do
-			if v then
+	end
+	--wait(1/7)--cool math
+	for _,v in pairs(Frame:GetDescendants()) do
+		if v then
 
-				if v:IsA("TextButton") and v.Name ~= "QuestionMark" then
-					v.Visible = true
-					v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
-					if v:FindFirstChild("QuestionMark") then
-						game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-					end
-					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-					wait()
+			if v:IsA("TextButton") and v.Name ~= "QuestionMark" then
+				v.Visible = true
+				v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
+				if v:FindFirstChild("QuestionMark") then
+					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
 				end
-				if v:IsA("TextLabel") then
-					v.Visible = true
-					wait()
-					v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
-					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-				end
-			
-
+				game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+				wait()
 			end
+			if v:IsA("TextLabel") then
+				v.Visible = true
+				wait()
+				v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
+				game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+			end
+
+
 		end
 	end
 end
@@ -645,10 +643,6 @@ local function QUOQZN_fake_script() -- Main.MainScript
 							TheFrame.Position = TheFrame.Position +UDim2.new(0,0,.13,0)
 							TheFrame:TweenPosition(TheFrame.Position -UDim2.new(0,0,.13,0),"Out","Quart",.4)
 							UI_Lib:FrameOpeningAnimation(TheFrame)
-							task.spawn(function()
-								wait(.1)
-								PageOn = TheFrame
-							end)
 							
 
 							
