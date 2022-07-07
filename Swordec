@@ -3,6 +3,7 @@ UI_Lib = {}
 do
 	plr = game:GetService("Players")
 	Player = plr
+	--
 	_0 = Instance.new("ScreenGui")
 	Main = Instance.new("Frame")
 	UICorner = Instance.new("UICorner")
@@ -54,7 +55,7 @@ end
 --Properties:
 
 _0.Name = "Pendulum\32Hub"
-_0.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+_0.Parent = game.CoreGui
 _0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Main.Name = "Main"
@@ -481,6 +482,7 @@ QuestionMark_4.TextColor3 = Color3.fromRGB(255, 255, 255)
 QuestionMark_4.TextScaled = true
 QuestionMark_4.TextSize = 14.000
 QuestionMark_4.TextWrapped = true
+PageOn = FrameHome
 ------------------------------------------------------------
 --//Functions
 function UI_Lib:ResetFrames()
@@ -519,7 +521,7 @@ function UI_Lib:CreateButton(Text,Info,Script,IsText)
 		Clone:FindFirstChildOfClass("TextButton").MouseButton1Click:Connect(function()
 			if Clone:FindFirstChildOfClass("TextButton")["val"].Value == true then
 				Clone:FindFirstChildOfClass("TextButton")["val"].Value = false
-				Clone.Text = tostring(Info);Clone.TextColor3 = Color3.new(0.552941, 0.552941, 0.552941)
+				Clone.Text = tostring(Info);Clone.TextColor3 = Color3.new(0, 0, 0)
 				game:GetService("TweenService"):Create(Clone:FindFirstChildOfClass("TextButton"), TweenInfo.new(.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Rotation = 90}):Play()
 			else
 				Clone.Text = LastText;Clone.TextColor3 = Color3.new(1, 1, 1)
@@ -533,7 +535,6 @@ function UI_Lib:CreateButton(Text,Info,Script,IsText)
 			end)()
 		end)
 	elseif IsText then
-		
 		Clone:FindFirstChildOfClass("TextButton").Visible = false
 		Clone.BackgroundTransparency = 1
 		Clone.Text = tostring(Text)
@@ -541,41 +542,59 @@ function UI_Lib:CreateButton(Text,Info,Script,IsText)
 		Clone.Visible = true
 	end
 end
-
+function UI_Lib:CreateText(Text)
+	if Text then
+		local Clone = BUTTONTEMP:Clone()
+		Clone.BackgroundTransparency = 1
+		Clone:ClearAllChildren()
+		Clone.Text = tostring(Text)
+		Clone.Parent = ScriptsScroll
+	end
+end
 function UI_Lib:FrameOpeningAnimation(Frame)--//Lazy code
-	for _,v in pairs(Frame:GetDescendants()) do
-		if v then
+	if PageOn ~= Frame then
+		for _,v in pairs(Frame:GetDescendants()) do
+			if v then
 
-			if v:IsA("TextButton") then
-				if v.Name ~= "QuestionMark" then
-					v.Position = v.Position +UDim2.new(0,0,0.1,0)
-					v.BackgroundTransparency =1
-					v.TextTransparency = 1
+				if not v:IsA("ScrollingFrame") then
+					if v:IsA("TextButton") then
+						if v.Name ~= "QuestionMark" then
+							v.Position = v.Position +UDim2.new(0,0,0.1,0)
+							v.BackgroundTransparency =1
+							v.TextTransparency = 1
 
+						end
+					end
+					if v:IsA("TextLabel") then
+						v.Position = v.Position +UDim2.new(0,0,0.1,0)
+						v.TextTransparency = 1
+
+					end
 				end
 			end
-			if v:IsA("TextLabel") then
-				v.Position = v.Position +UDim2.new(0,0,0.1,0)
-				v.TextTransparency = 1
-
-			end
 		end
-	end
-	wait(1/7)--cool math
-	for _,v in pairs(Frame:GetDescendants()) do
-		if v then
-			if v:IsA("TextButton") and v.Name ~= "QuestionMark" then
-				v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
-				game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-				game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-				wait()
-			end
-			if v:IsA("TextLabel") then
-				wait()
-				v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
-				game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-			end
+		--wait(1/7)--cool math
+		for _,v in pairs(Frame:GetDescendants()) do
+			if v then
 
+				if v:IsA("TextButton") and v.Name ~= "QuestionMark" then
+					v.Visible = true
+					v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
+					if v:FindFirstChild("QuestionMark") then
+						game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+					end
+					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+					wait()
+				end
+				if v:IsA("TextLabel") then
+					v.Visible = true
+					wait()
+					v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
+					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+				end
+				print(1)
+
+			end
 		end
 	end
 end
@@ -615,50 +634,65 @@ local function QUOQZN_fake_script() -- Main.MainScript
 				v.MouseButton1Click:Connect(function()
 					if v:FindFirstChildOfClass("ImageLabel") then
 						if script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name) then
-							UI_Lib:ResetFrames()
-							local TheFrame = script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name)
-							TheFrame.Position = TheFrame.Position +UDim2.new(0,0,.13,0)
-							TheFrame:TweenPosition(TheFrame.Position -UDim2.new(0,0,.13,0),"Out","Quart",.4)
-							UI_Lib:FrameOpeningAnimation(TheFrame)
-							TheFrame.Visible = true
+							if PageOn ~= script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name) then
+								UI_Lib:ResetFrames()
+								local TheFrame = script.Parent:FindFirstChild(v:FindFirstChildOfClass("ImageLabel").Name)
+								TheFrame.Visible = true
+								if TheFrame:FindFirstChildOfClass("ScrollingFrame") then
+									TheFrame:FindFirstChildOfClass("ScrollingFrame").CanvasPosition = Vector2.new(0,0)
+								end
+								TheFrame.Position = TheFrame.Position +UDim2.new(0,0,.13,0)
+								TheFrame:TweenPosition(TheFrame.Position -UDim2.new(0,0,.13,0),"Out","Quart",.4)
+								UI_Lib:FrameOpeningAnimation(TheFrame)
+								PageOn = TheFrame
+								
+							end
+							
 						end
 					end
 				end)
 				--69, 140, 134
-				v.MouseEnter:Connect(function()
-					game:GetService("TweenService"):Create(v:FindFirstChildOfClass("ImageLabel"), tweenInfo, {ImageColor3 = Color3.fromRGB(95, 193, 183)}):Play()
-				end)
-				v.MouseLeave:Connect(function()
-					game:GetService("TweenService"):Create(v:FindFirstChildOfClass("ImageLabel"), tweenInfo, {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-				end)
+				if v:FindFirstChildOfClass("ImageLabel") then
+					v.MouseEnter:Connect(function()
+						game:GetService("TweenService"):Create(v:FindFirstChildOfClass("ImageLabel"), tweenInfo, {ImageColor3 = Color3.fromRGB(95, 193, 183)}):Play()
+					end)
+					v.MouseLeave:Connect(function()
+						game:GetService("TweenService"):Create(v:FindFirstChildOfClass("ImageLabel"), tweenInfo, {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+					end)
+				end
 			end
 		end
 	end
 
-	for i,v in pairs(script.Parent:GetDescendants()) do
-		if v then
-			if v:IsA("TextButton") then
-				--69, 140, 134
-				v.MouseButton1Click:Connect(function()
-					if v:FindFirstChildOfClass("ImageLabel") then
-						UI_Lib:CreateSound(6228296129,true)
-					end
-				end)
+	coroutine.wrap(function()
+		wait(1)--//Waits so that every button added also gets animation
+		--^^^!!!removing it will make buttons not have animations!!!^^^
+		
+		for i,v in pairs(script.Parent:GetDescendants()) do
+			if v then
+				if v:IsA("TextButton") then
+					--69, 140, 134
+					v.MouseButton1Click:Connect(function()
+						if v:FindFirstChildOfClass("ImageLabel") then
+							UI_Lib:CreateSound(6228296129,true)
+						end
+					end)
 
-				v.MouseEnter:Connect(function()
-					if not table.find(BlackListedFromTweening,v) then
-						game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(95, 193, 183)}):Play()
-					end
-				end)
-				v.MouseLeave:Connect(function()
-					if not table.find(BlackListedFromTweening,v) then
-						game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(44, 44, 44)}):Play()
-					end
-				end)
+					v.MouseEnter:Connect(function()
+						if not table.find(BlackListedFromTweening,v) then
+							game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(95, 193, 183)}):Play()
+						end
+					end)
+					v.MouseLeave:Connect(function()
+						if not table.find(BlackListedFromTweening,v) then
+							game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(44, 44, 44)}):Play()
+						end
+					end)
+				end
 			end
 		end
-	end
 
+	end)()
 
 
 end
