@@ -650,7 +650,7 @@ local function QUOQZN_fake_script() -- Main.MainScript
 									UI_Lib:FrameOpeningAnimation(TheFrame)
 
 								end)
-								wait(.6)
+								wait(2131231)
 								cd = false
 							end
 						end
