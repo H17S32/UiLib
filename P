@@ -572,10 +572,11 @@ function UI_Lib:CreateText(Text)
 end
 function UI_Lib:FrameOpeningAnimation(Frame)--//Lazy code
 	if workspace then
+		local StopFrameTweening = {Playanim,StopAnim}
 		for _,v in pairs(Frame:GetDescendants()) do
 			if v then
 
-				if not v:IsA("ScrollingFrame") then
+				if not v:IsA("ScrollingFrame") and not table.find(StopFrameTweening,v) then
 					if v:IsA("TextButton") then
 						if v.Name ~= "QuestionMark" then
 							if not v:FindFirstChildOfClass("StringValue") then
@@ -784,7 +785,7 @@ StopAnim.Text = "Stop"
 StopAnim.TextColor3 = Color3.fromRGB(255, 255, 255)
 StopAnim.TextSize = 14.000
 StopAnim.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-local Global = getgenv and getgenv() or _G
+
 
 Playanim.MouseButton1Click:Connect(function()
 	local number = AnimationId.Text
