@@ -57,7 +57,7 @@ end
 _0.Name = "Pendulum\32Hub"
 _0.Parent = game.CoreGui
 _0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
+UI_Lib.ScreenGui = _0
 Main.Name = "Main"
 Main.Parent = _0
 Main.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
