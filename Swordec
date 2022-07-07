@@ -746,7 +746,7 @@ coroutine.wrap(function()
 	local tweenInfo = TweenInfo.new(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
 	local BlackListedFromTweening = {FrameHome,ScriptingFrame,SettingsFrame,CloseUI}
-	repeat wait() until ScriptsScroll:FindFirstChildOfClass("TextButton")
+	repeat wait() until ScriptsScroll:FindFirstChild("BUTTONTEMP")
 	print("done")
 	wait(.7)
 	for i,v in pairs(ScriptsScroll:GetChildren()) do
@@ -754,9 +754,7 @@ coroutine.wrap(function()
 			if v:IsA("TextButton") then
 				--69, 140, 134
 				v.MouseButton1Click:Connect(function()
-					if v:FindFirstChildOfClass("ImageLabel") then
-						UI_Lib:CreateSound(6228296129,true)
-					end
+					UI_Lib:CreateSound(6228296129,true)
 				end)
 
 				v.MouseEnter:Connect(function()
