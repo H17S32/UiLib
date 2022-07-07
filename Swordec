@@ -667,7 +667,7 @@ local function QUOQZN_fake_script() -- Main.MainScript
 	end
 
 	coroutine.wrap(function()
-		wait(1)--//Waits so that every button added also gets animation
+		wait(1.6)--//Waits so that every button added also gets animation
 		--^^^!!!removing it will make buttons not have animations!!!^^^
 		
 		for i,v in pairs(script.Parent:GetDescendants()) do
