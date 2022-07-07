@@ -315,7 +315,7 @@ FlingType.Font = Enum.Font.SourceSans
 FlingType.Text = "Fling Type: nil"
 FlingType.TextColor3 = Color3.fromRGB(255, 255, 255)
 FlingType.TextSize = 14.000
-
+UI_Lib.FlingTypeB = FlingType
 UICorner_7.CornerRadius = UDim.new(0, 4)
 UICorner_7.Parent = FlingType
 
@@ -342,6 +342,8 @@ ReanimationType.Font = Enum.Font.SourceSans
 ReanimationType.Text = "Reanimation Type: nil"
 ReanimationType.TextColor3 = Color3.fromRGB(255, 255, 255)
 ReanimationType.TextSize = 14.000
+UI_Lib.ReanimationTypeB =ReanimationType
+
 
 UICorner_8.CornerRadius = UDim.new(0, 4)
 UICorner_8.Parent = ReanimationType
