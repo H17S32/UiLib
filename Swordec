@@ -716,7 +716,7 @@ end)
 dragify(Main)
 local tweenInfo = TweenInfo.new(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
-local BlackListedFromTweening = {script.Parent.FrameHome,script.Parent.ScriptingFrame,script.Parent.SettingsFrame,CloseUI}
+local BlackListedFromTweening = {FrameHome,ScriptingFrame,SettingsFrame,CloseUI}
 
 for i,v in pairs(Main:GetDescendants()) do
 	if v then
