@@ -908,6 +908,8 @@ task.spawn(function()
 	for i=1,3 do
 		task.spawn(function()
 			local c2 = C:Clone()
+			c2.Parent = plr
+			wait(.1)
 			c2.Parent = ScriptsScroll
 		end)
 	end
