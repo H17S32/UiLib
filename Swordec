@@ -645,7 +645,7 @@ local function QUOQZN_fake_script() -- Main.MainScript
 								TheFrame.Position = TheFrame.Position +UDim2.new(0,0,.13,0)
 								TheFrame:TweenPosition(TheFrame.Position -UDim2.new(0,0,.13,0),"Out","Quart",.4)
 								UI_Lib:FrameOpeningAnimation(TheFrame)
-								PageOn = TheFrame
+								
 								
 							end
 							
