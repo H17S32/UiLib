@@ -197,6 +197,7 @@ ScriptsScroll.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ScriptsScroll.BackgroundTransparency = 1.000
 ScriptsScroll.BorderSizePixel = 0
 ScriptsScroll.Position = UDim2.new(0, 0, 0.111587986, 0)
+ScriptsScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
 ScriptsScroll.Size = UDim2.new(0, 351, 0, 207)
 ScriptsScroll.ScrollBarThickness = 4
 
