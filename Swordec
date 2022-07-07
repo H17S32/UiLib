@@ -503,18 +503,37 @@ function UI_Lib:CreateSound(Id,Play)
 		end)
 	end
 end
-function UI_Lib:CreateButton(Text,Script,IsText)
+function UI_Lib:CreateButton(Text,Info,Script,IsText)
 	local callback_function = Script
 	local Clone = BUTTONTEMP:Clone()
 	--
 	if not IsText then
 		Clone.Text = tostring(Text)
 		Clone.Parent =ScriptsScroll
+		local LastText = Clone.Text
 		Clone.Visible = true
+		local v2 = Instance.new("BoolValue")
+		v2.Name = "val"
+		v2.Parent = Clone:FindFirstChildOfClass("TextButton")
+		Clone:FindFirstChildOfClass("TextButton").MouseButton1Click:Connect(function()
+			if Clone:FindFirstChildOfClass("TextButton")["val"].Value == true then
+				Clone:FindFirstChildOfClass("TextButton")["val"].Value = false
+				Clone.Text = tostring(Info);Clone.TextColor3 = Color3.new(0.552941, 0.552941, 0.552941)
+				game:GetService("TweenService"):Create(Clone:FindFirstChildOfClass("TextButton"), TweenInfo.new(.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Rotation = 90}):Play()
+			else
+				Clone.Text = LastText;Clone.TextColor3 = Color3.new(1, 1, 1)
+				Clone:FindFirstChildOfClass("TextButton")["val"].Value = true
+				game:GetService("TweenService"):Create(Clone:FindFirstChildOfClass("TextButton"), TweenInfo.new(.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Rotation = 0}):Play()	
+			end
+		end)
 		Clone.MouseButton1Click:Connect(function()
-			pcall(Script)
+			coroutine.wrap(function ()
+				pcall(Script)
+			end)()
 		end)
 	elseif IsText then
+		
+		Clone:FindFirstChildOfClass("TextButton").Visible = false
 		Clone.BackgroundTransparency = 1
 		Clone.Text = tostring(Text)
 		Clone.Parent =ScriptsScroll
@@ -645,13 +664,13 @@ end
 coroutine.wrap(QUOQZN_fake_script)()
 local UIS = game:GetService("UserInputService")
 function dragify(Frame)
-	dragToggle = nil
+	local dragToggle = nil
 	local dragSpeed = 0.50
-	dragInput = nil
-	dragStart = nil
+	local dragInput = nil
+	local dragStart = nil
 	local dragPos = nil
-	function updateInput(input)
-		local Delta = input.Position - dragStart
+	local function updateInput(input)
+		local Delta = input.Position - dragStart--//leave startPos as it is
 		local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
 		game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.30), {Position = Position}):Play()
 	end
@@ -680,4 +699,5 @@ function dragify(Frame)
 end
 
 dragify(Main)
+
 return UI_Lib
