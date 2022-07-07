@@ -747,6 +747,7 @@ coroutine.wrap(function()
 
 	local BlackListedFromTweening = {FrameHome,ScriptingFrame,SettingsFrame,CloseUI}
 	repeat wait() until ScriptsScroll:FindFirstChildOfClass("TextButton")
+	print("done")
 	wait(.7)
 	for i,v in pairs(ScriptsScroll:GetChildren()) do
 		if v then
