@@ -742,32 +742,31 @@ coroutine.wrap(function()
 		end
 	end
 end)()
-coroutine.wrap(function()
-	print("done1")
+spawn(function()
 	local tweenInfo = TweenInfo.new(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
 	local BlackListedFromTweening = {FrameHome,ScriptingFrame,SettingsFrame,CloseUI}
 	repeat wait() until ScriptsScroll:FindFirstChild("BUTTONTEMP")
-	print("done")
+
 	wait(.7)
 	for i,v in pairs(ScriptsScroll:GetChildren()) do
 		if v then
 			if v:IsA("TextButton") then
 				--69, 140, 134
-				
+
 
 				v.MouseEnter:Connect(function()
-					if not table.find(BlackListedFromTweening,v) then
-						game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(95, 193, 183)}):Play()
-					end
+					--if not table.find(BlackListedFromTweening,v) then
+					game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(95, 193, 183)}):Play()
+					--end
 				end)
 				v.MouseLeave:Connect(function()
-					if not table.find(BlackListedFromTweening,v) then
-						game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(44, 44, 44)}):Play()
-					end
+					--if not table.find(BlackListedFromTweening,v) then
+					game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(44, 44, 44)}):Play()
+					--end
 				end)
 			end
 		end
 	end
-end)()
+end)
 return UI_Lib
