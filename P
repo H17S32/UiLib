@@ -899,6 +899,7 @@ task.spawn(function()
 	end)()
 	AnimationId.Parent = ScriptsScroll
 	AnimationId.Visible = true
+	UI_Lib:CreateText("End of scripts")
 	
 end)
 return UI_Lib
