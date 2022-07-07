@@ -605,7 +605,7 @@ local function QUOQZN_fake_script() -- Main.MainScript
 
 	local tweenInfo = TweenInfo.new(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
-	local BlackListedFromTweening = {script.Parent.FrameHome,script.Parent.ScriptingFrame,script.Parent.SettingsFrame}
+	local BlackListedFromTweening = {script.Parent.FrameHome,script.Parent.ScriptingFrame,script.Parent.SettingsFrame,CloseUI}
 
 
 	for i,v in pairs(script.Parent:GetChildren()) do
@@ -697,7 +697,13 @@ function dragify(Frame)
 		end
 	end)
 end
-
+CloseUI.MouseButton1Click:Connect(function()
+	Main:TweenPosition(Main.Position +UDim2.new(0,0,2,0),"Out","Quart",1)
+	UI_Lib:ResetFrames()
+	Main:TweenSize(UDim2.new(0,0,0,0),"Out","Quart",.4)
+	wait(1)
+	_0:Destroy()
+end)
 dragify(Main)
 
 return UI_Lib
