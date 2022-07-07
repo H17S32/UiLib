@@ -893,9 +893,12 @@ task.spawn(function()
 end)
 task.spawn(function()
 	wait(1)
-	UI_Lib:CreateText("Animation Id Player")
-	wait()
+	wait()--//lol
+	coroutine.wrap(function()
+		UI_Lib:CreateText("Animation Id Player")
+	end)()
 	AnimationId.Parent = ScriptsScroll
 	AnimationId.Visible = true
+	
 end)
 return UI_Lib
