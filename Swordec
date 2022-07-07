@@ -666,35 +666,7 @@ local function QUOQZN_fake_script() -- Main.MainScript
 		end
 	end
 
-	coroutine.wrap(function()
-		wait(1.6)--//Waits so that every button added also gets animation
-		--^^^!!!removing it will make buttons not have animations!!!^^^
-		
-		for i,v in pairs(script.Parent:GetDescendants()) do
-			if v then
-				if v:IsA("TextButton") then
-					--69, 140, 134
-					v.MouseButton1Click:Connect(function()
-						if v:FindFirstChildOfClass("ImageLabel") then
-							UI_Lib:CreateSound(6228296129,true)
-						end
-					end)
-
-					v.MouseEnter:Connect(function()
-						if not table.find(BlackListedFromTweening,v) then
-							game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(95, 193, 183)}):Play()
-						end
-					end)
-					v.MouseLeave:Connect(function()
-						if not table.find(BlackListedFromTweening,v) then
-							game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(44, 44, 44)}):Play()
-						end
-					end)
-				end
-			end
-		end
-
-	end)()
+	
 
 
 end
@@ -742,5 +714,36 @@ CloseUI.MouseButton1Click:Connect(function()
 	_0:Destroy()
 end)
 dragify(Main)
+coroutine.wrap(function()
+	wait(1)--//Waits so that every button added also gets animation
+	--^^^!!!removing it will make buttons not have animations!!!^^^
+	local tweenInfo = TweenInfo.new(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 
+	local BlackListedFromTweening = {script.Parent.FrameHome,script.Parent.ScriptingFrame,script.Parent.SettingsFrame,CloseUI}
+
+	for i,v in pairs(Main:GetDescendants()) do
+		if v then
+			if v:IsA("TextButton") then
+				--69, 140, 134
+				v.MouseButton1Click:Connect(function()
+					if v:FindFirstChildOfClass("ImageLabel") then
+						UI_Lib:CreateSound(6228296129,true)
+					end
+				end)
+
+				v.MouseEnter:Connect(function()
+					if not table.find(BlackListedFromTweening,v) then
+						game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(95, 193, 183)}):Play()
+					end
+				end)
+				v.MouseLeave:Connect(function()
+					if not table.find(BlackListedFromTweening,v) then
+						game:GetService("TweenService"):Create(v, tweenInfo, {BackgroundColor3 = Color3.fromRGB(44, 44, 44)}):Play()
+					end
+				end)
+			end
+		end
+	end
+
+end)()
 return UI_Lib
