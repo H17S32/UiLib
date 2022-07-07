@@ -904,6 +904,10 @@ task.spawn(function()
 	AnimationId.Parent = ScriptsScroll
 	AnimationId.Visible = true
 	wait(.6)
-	UI_Lib:CreateButton("Animation Id Player","",function()end)
+	for i=1,3 do
+		task.spawn(function()
+			UI_Lib:CreateText(" ")
+		end)
+	end
 end)
 return UI_Lib
