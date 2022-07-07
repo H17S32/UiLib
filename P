@@ -2,6 +2,9 @@
 
 UI_Lib = {}
 
+if game.CoreGui:FindFirstChild("Pendulum Hub") then
+	game.CoreGui:FindFirstChild("Pendulum Hub"):Destroy()
+end
 do
 	plr = game:GetService("Players")
 	Player = plr
@@ -61,7 +64,7 @@ do
 end
 --Properties:
 
-_0.Name = "Pendulum\32Hub"
+_0.Name = "Pendulum\32Hub"--//\32 space lol
 _0.Parent = game.CoreGui
 _0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 UI_Lib.ScreenGui = _0
