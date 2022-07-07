@@ -793,9 +793,7 @@ Playanim.MouseButton1Click:Connect(function()
 		Dancing = false
 	end
 	local aaa = 'rbxassetid://' .. AnimationId.Text
-	if (not Global.CloneRig) or game.Players.LocalPlayer.Character ~= Global.CloneRig then
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/ReanimMain.lua'))()
-	end
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/ReanimMain.lua'))()
 
 	local NeededAssets = game:GetObjects(aaa)[1]
 	local TweenService = game:GetService'TweenService'
