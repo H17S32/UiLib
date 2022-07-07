@@ -715,6 +715,7 @@ CloseUI.MouseButton1Click:Connect(function()
 end)
 dragify(Main)
 coroutine.wrap(function()
+	repeat wait() until ScriptsScroll:FindFirstChildOfClass("TextButton")
 	wait(1)--//Waits so that every button added also gets animation
 	--^^^!!!removing it will make buttons not have animations!!!^^^
 	local tweenInfo = TweenInfo.new(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
