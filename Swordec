@@ -594,7 +594,7 @@ function UI_Lib:FrameOpeningAnimation(Frame)--//Lazy code
 					v:TweenPosition(v.Position -UDim2.new(0,0,0.1,0),"Out","Quart",.5)
 					game:GetService("TweenService"):Create(v, TweenInfo.new(.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
 				end
-				print(1)
+			
 
 			end
 		end
@@ -747,6 +747,7 @@ coroutine.wrap(function()
 
 	local BlackListedFromTweening = {FrameHome,ScriptingFrame,SettingsFrame,CloseUI}
 	repeat wait() until ScriptsScroll:FindFirstChildOfClass("TextButton")
+	wait(.7)
 	for i,v in pairs(ScriptsScroll:GetChildren()) do
 		if v then
 			if v:IsA("TextButton") then
@@ -770,5 +771,5 @@ coroutine.wrap(function()
 			end
 		end
 	end
-end)
+end)  
 return UI_Lib
