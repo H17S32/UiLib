@@ -653,7 +653,7 @@ local function QUOQZN_fake_script() -- Main.MainScript
 
 								end
 
-								wait(.6)
+								wait(.2)
 								Cd = false
 							end
 						end
