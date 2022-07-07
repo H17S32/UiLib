@@ -827,7 +827,9 @@ Playanim.MouseButton1Click:Connect(function()
 		task.wait(1/120)
 	until Dancing == false
 end)
-
+StopAnim.MouseButton1Click:Connect(function()
+	Dancing = false
+end)
 CloseUI.MouseButton1Click:Connect(function()
 	Main:TweenPosition(Main.Position +UDim2.new(0,0,2,0),"Out","Quart",1)
 	UI_Lib:ResetFrames()
